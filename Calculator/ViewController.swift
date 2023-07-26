@@ -12,6 +12,7 @@ import UIKit
     
     @IBOutlet var displayResultLabel: UILabel!
     @IBOutlet var buttonsOnCalculator: [UIButton]!
+     
     private var stillTyping = false
     private var dotIsPlaced = false
     private var firstOperand = 0.0
@@ -24,7 +25,15 @@ import UIKit
         }
         
         set {
-            displayResultLabel.text = "\(newValue)"
+            let value = "\(newValue)"
+            let values = value.components(separatedBy: ".")
+            
+            if values [1] == "0" {
+                displayResultLabel.text = "\(values[0])"
+            } else {
+                displayResultLabel.text = "\(newValue)"
+            }
+            
             stillTyping = false
         }
     }
